@@ -1,0 +1,186 @@
+--TEST--
+nome: Stampa Parole Base
+--INPUT--
+c
+i mela
+i pera
+i banana
+p
+--ATTESO--
+[
+banana
+mela
+pera
+]
+--END--
+
+--TEST--
+nome: Stampa Schemi Base
+--INPUT--
+c
+i MelA
+i PerA
+i BananA
+s
+--ATTESO--
+[
+BananA
+MelA
+PerA
+]
+--END--
+
+--TEST--
+nome: Carica File e Stampa
+--INPUT--
+c
+c dizionario_carica.txt
+p
+--ATTESO--
+[
+anatra
+casa
+castoro
+coniglio
+cosa
+gatto
+ratto
+rotto
+topo
+]
+--END--
+
+--TEST--
+nome: Elimina e Stampa
+--INPUT--
+c
+i mela
+i pera
+i banana
+e pera
+p
+--ATTESO--
+[
+banana
+mela
+]
+--END--
+
+--TEST--
+nome: Ricerca Schema Corretta
+--INPUT--
+c
+i corsa
+i messa
+r CoRsA
+--ATTESO--
+CoRsA:[
+corsa
+]
+--END--
+
+--TEST--
+nome: Ricerca Schema Senza Corrispondenze
+--INPUT--
+c
+c dizionario_carica.txt
+r ZZZZZZZ
+--ATTESO--
+ZZZZZZZ:[
+]
+--END--
+
+--TEST--
+nome: Distanza 0
+--INPUT--
+c
+d uguali uguali
+--ATTESO--
+0
+--END--
+
+--TEST--
+nome: Distanza 1 (Sostituzione)
+--INPUT--
+c
+d casa cosa
+--ATTESO--
+1
+--END--
+
+--TEST--
+nome: Distanza Maggiore di 1
+--INPUT--
+c
+d topo topolino
+--ATTESO--
+4
+--END--
+
+--TEST--
+nome: Distanza 1 (Cancellazione)
+--INPUT--
+c
+d dado dao
+--ATTESO--
+1
+--END--
+
+--TEST--
+nome: Distanza 1 (Trasposizione)
+--INPUT--
+c
+d trota torta
+--ATTESO--
+1
+--END--
+
+--TEST--
+nome: Distanza Complessa (da PDF)
+--INPUT--
+c
+d capra arpa
+--ATTESO--
+2
+--END--
+
+--TEST--
+nome: Catena Esistente (da PDF)
+--INPUT--
+c
+i aa
+i aaa
+i aba
+i bba
+c aa bba
+--ATTESO--
+(
+aa
+aba
+bba
+)
+--END--
+
+--TEST--
+nome: Catena Non Esistente (Parola Manca)
+--INPUT--
+c
+i aa
+i bba
+c aa bba
+--ATTESO--
+non esiste
+--END--
+
+--TEST--
+nome: Catena a se stessa
+--INPUT--
+c
+i aa
+c aa aa
+--ATTESO--
+(
+aa
+)
+--END--
+
